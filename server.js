@@ -19,7 +19,8 @@ app.get("/js", (req, res) => {
 
 app.get('/api/robots', (req, res) => {
     try {
-        res.status(200).send(botsArr)
+        // changed botsArr to bots to correctly import data to be displayed
+        res.status(200).send(bots)
     } catch (error) {
         console.log('ERROR GETTING BOTS', error)
         res.sendStatus(400)
@@ -60,7 +61,8 @@ app.post('/api/duel', (req, res) => {
             playerRecord.losses++
             res.status(200).send('You lost!')
         } else {
-            playerRecord.losses++
+            // changed playerRecord.losses++ to playerRecord.wins++ to increment wins instead of losses
+            playerRecord.wins++
             res.status(200).send('You won!')
         }
     } catch (error) {
