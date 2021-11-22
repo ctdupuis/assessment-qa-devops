@@ -1,3 +1,3 @@
 ## Paste your link below
 
-[Live Link](https://qa-devops-assessment.herokuapp.com)
+[Live Link](https://qa-devops-assessment.herokuapp.com/)
