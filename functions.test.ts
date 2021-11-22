@@ -21,8 +21,6 @@ describe('shuffleArray should', () => {
     })
 
     test('shuffleArray shuffles the array', () => {
-        expect(value[0]).not.toEqual(sample[0])
-        expect(value[1]).not.toEqual(sample[1])
-        expect(value[2]).not.toEqual(sample[2])
+        expect(value).not.toEqual(sample)
     })
 })
