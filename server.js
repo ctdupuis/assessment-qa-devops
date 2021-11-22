@@ -4,6 +4,16 @@ const app = express()
 const {bots, playerRecord} = require('./data')
 const {shuffleArray} = require('./utils')
 
+require("dotenv").config();
+
+var Rollbar = require("rollbar");
+var rollbar = new Rollbar({
+  accessToken: process.env.ROLLBAR_TOKEN,
+  captureUncaught: true,
+  captureUnhandledRejections: true
+});
+
+
 app.use(express.json())
 
 app.use(express.static("public"));
@@ -23,6 +33,7 @@ app.get('/api/robots', (req, res) => {
         res.status(200).send(bots)
     } catch (error) {
         console.log('ERROR GETTING BOTS', error)
+        rollbar.error(error)
         res.sendStatus(400)
     }
 })
@@ -35,6 +46,7 @@ app.get('/api/robots/five', (req, res) => {
         res.status(200).send({choices, compDuo})
     } catch (error) {
         console.log('ERROR GETTING FIVE BOTS', error)
+        rollbar.error(error)
         res.sendStatus(400)
     }
 })
@@ -67,6 +79,7 @@ app.post('/api/duel', (req, res) => {
         }
     } catch (error) {
         console.log('ERROR DUELING', error)
+        rollbar.error(error)
         res.sendStatus(400)
     }
 })
@@ -76,6 +89,7 @@ app.get('/api/player', (req, res) => {
         res.status(200).send(playerRecord)
     } catch (error) {
         console.log('ERROR GETTING PLAYER STATS', error)
+        rollbar.error(error)
         res.sendStatus(400)
     }
 })
